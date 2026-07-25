@@ -1,317 +1,240 @@
-# Computação Quântica com Qiskit - Curso Intensivo do Prof. Nathan Lima
+# Computação Quântica com Qiskit - Curso intensivo do Professor Nathan Lima
 
-> Coleção de notebooks desenvolvidos para estudo e experimentação dos principais fundamentos da Computação Quântica utilizando **Qiskit**, com ênfase na compreensão matemática dos fenômenos quânticos, construção de circuitos, simulação de algoritmos e interpretação física dos resultados.
+> **Coleção de notebooks** desenvolvidos para introduzir os fundamentos da Computação Quântica por meio do ecossistema **Qiskit**, conciliando fundamentação matemática, interpretação física e implementação computacional.
 
-## Sobre o projeto
+## Visão Geral
 
-Este repositório reúne três notebooks produzidos durante estudos introdutórios em Computação Quântica utilizando o ecossistema **IBM Qiskit**.
+O material foi desenvolvido com foco educacional, explorando conceitos centrais como superposição, portas quânticas, Esfera de Bloch, vetores de estado, emaranhamento e protocolos elementares da informação quântica. Tudo isso foi feito ao longo do curso intensivo de computação quântica lecionada pelo professor Nathan Lima. 
 
-Ao invés de simplesmente executar códigos, o objetivo deste material é construir uma compreensão gradual dos conceitos fundamentais da computação quântica, relacionando teoria matemática, representação física e implementação computacional.
-
-Todos os experimentos foram desenvolvidos em ambiente **Google Colab**, utilizando o simulador **Qiskit Aer**, permitindo observar exatamente a evolução dos estados quânticos antes da medição.
+---
 
 # Objetivos
 
-Os notebooks procuram desenvolver os seguintes conceitos:
-
-- Compreensão da representação matemática de qubits;
-- Construção de circuitos quânticos utilizando Qiskit;
-- Estudo das principais portas quânticas;
-- Interpretação da evolução dos vetores de estado;
-- Visualização geométrica na Esfera de Bloch;
-- Criação de estados emaranhados;
-- Análise estatística das medições quânticas;
-- Introdução aos protocolos básicos de comunicação quântica.
-
-Mais do que apresentar comandos da biblioteca, o foco está em compreender **por que** cada operação produz determinado comportamento físico e matemático.
-
-# Tecnologias utilizadas
-
-- Python 3
-- Qiskit
-- Qiskit Aer
-- Qiskit IBM Runtime
-- NumPy
-- Matplotlib
-- Google Colab
-
-
-# Conteúdos abordados
-
-## 1. Introdução ao modelo de computação quântica
-
-O projeto inicia apresentando a diferença entre computação clássica e computação quântica.
-
-Enquanto um bit clássico assume apenas os estados
-
-\[
-0 \quad \text{ou} \quad 1,
-\]
-
-um qubit pode existir em uma combinação linear destes estados, denominada **superposição**:
-
-\[
-|\psi\rangle=\alpha|0\rangle+\beta|1\rangle,
-\]
-
-onde
-
-\[
-|\alpha|^2+|\beta|^2=1.
-\]
-
-Essa restrição garante que a soma das probabilidades de medição seja igual a 1.
-
-Os notebooks exploram esse conceito tanto matematicamente quanto por meio de simulações.
+- Introduzir os fundamentos da Computação Quântica.
+- Modelar circuitos utilizando **Qiskit**.
+- Compreender a representação matemática dos qubits.
+- Visualizar a evolução dos estados quânticos.
+- Simular experimentos em ambiente clássico.
+- Construir estados emaranhados e interpretar seus resultados.
 
 ---
 
-# 2. Construção de circuitos quânticos
+# Tecnologias
 
-Os experimentos utilizam a classe
+| Tecnologia | Finalidade |
+|------------|------------|
+| Python 3 | Linguagem principal |
+| Qiskit | Framework de Computação Quântica |
+| Qiskit Aer | Simulações |
+| NumPy | Álgebra Linear |
+| Matplotlib | Visualizações |
+| Google Colab | Ambiente de execução |
 
-```python
-QuantumCircuit
+---
+
+# Estrutura
+
+```text
+.
+├── Aula_pratica_curso_imersivo.ipynb
+├── Notebook_Hadamard_Esfera_Bloch.ipynb
+├── Par_de_Bell_Qiskit_Google_Colab_CORRIGIDO.ipynb
+└── README.md
 ```
 
-para modelar circuitos compostos por:
-
-- qubits;
-- bits clássicos;
-- portas lógicas;
-- medições.
-
-Cada circuito representa uma sequência ordenada de transformações unitárias aplicadas ao vetor de estado.
-
-Durante os experimentos são utilizados simuladores para acompanhar cada etapa da evolução do sistema antes da medição.
-
 ---
 
-# 3. Porta Hadamard
+# Fundamentação Teórica
 
-Um dos principais tópicos estudados é a porta **Hadamard**, responsável por criar estados de superposição.
+## O qubit
 
-Sua representação matricial é
+Um qubit é descrito pelo vetor de estado
 
-\[
-H=
-\frac1{\sqrt2}
-\begin{bmatrix}
-1&1\\
-1&-1
-\end{bmatrix}.
-\]
-
-Nos notebooks são analisadas as transformações
-
-\[
-H|0\rangle=
-\frac{|0\rangle+|1\rangle}{\sqrt2},
-\]
-
-e
-
-\[
-H|1\rangle=
-\frac{|0\rangle-|1\rangle}{\sqrt2}.
-\]
-
-Além disso, demonstra-se experimentalmente que
-
-\[
-H^2=I,
-\]
-
-mostrando que a aplicação sucessiva da porta Hadamard restaura o estado inicial.
-
----
-
-# 4. Esfera de Bloch
-
-Um notebook é dedicado exclusivamente à interpretação geométrica dos estados de um único qubit.
-
-A Esfera de Bloch fornece uma representação tridimensional onde:
-
-- polo norte representa o estado \(|0\rangle\);
-- polo sul representa o estado \(|1\rangle\);
-- pontos sobre o equador representam diferentes superposições.
-
-Essa visualização permite compreender intuitivamente como portas quânticas realizam rotações no espaço de estados.
-
-Foram utilizados recursos do Qiskit para visualizar dinamicamente essas transformações.
-
----
-
-# 5. Vetor de estado
-
-Ao invés de observar apenas os resultados das medições, os notebooks utilizam
-
-```python
-Statevector
+```text
+|ψ⟩ = α|0⟩ + β|1⟩
 ```
 
-para obter o vetor de estado exato produzido por cada circuito.
+em que
 
-Essa abordagem permite verificar diretamente:
-
-- amplitudes complexas;
-- normalização do estado;
-- efeitos das portas unitárias;
-- evolução do sistema antes do colapso da função de onda.
-
-Essa técnica aproxima o estudo computacional da formulação matemática da Mecânica Quântica.
-
----
-
-# 6. Simulação quântica
-
-Os experimentos utilizam
-
-```python
-AerSimulator
+```text
+|α|² + |β|² = 1
 ```
 
-para executar circuitos em ambiente clássico.
+garante a normalização das probabilidades.
 
-O simulador permite:
-
-- executar milhares de medições;
-- estimar distribuições de probabilidade;
-- comparar teoria e resultados experimentais;
-- validar o comportamento esperado dos algoritmos.
-
-A utilização de múltiplos *shots* evidencia a natureza probabilística da medição quântica.
+Diferentemente do bit clássico, o qubit pode permanecer em superposição até o instante da medição.
 
 ---
 
-# 7. Estados de Bell
+## Superposição
 
-Um dos principais experimentos consiste na construção de um **Par de Bell**, um estado maximamente emaranhado.
+A superposição permite que um sistema quântico represente simultaneamente combinações lineares dos estados da base computacional.
 
-O circuito é composto essencialmente pelas portas:
+Esse comportamento constitui um dos pilares da vantagem potencial da computação quântica.
 
-- Hadamard;
-- CNOT.
+---
+
+## Porta Hadamard
+
+A porta Hadamard cria superposição uniforme.
+
+```text
+        1
+H = ───────── · [ 1   1 ]
+      √2         [ 1  -1 ]
+```
+
+Aplicações fundamentais:
+
+```text
+H|0⟩ = (|0⟩ + |1⟩)/√2
+
+H|1⟩ = (|0⟩ − |1⟩)/√2
+```
+
+Também verifica-se que
+
+```text
+H² = I
+```
+
+---
+
+## Esfera de Bloch
+
+A Esfera de Bloch representa geometricamente estados de um único qubit.
+
+- Polo Norte → |0⟩
+- Polo Sul → |1⟩
+- Equador → superposições
+
+O notebook correspondente utiliza as ferramentas gráficas do Qiskit para visualizar essas rotações.
+
+---
+
+## Vetor de Estado
+
+Os notebooks empregam `Statevector` para inspecionar diretamente as amplitudes complexas produzidas pelos circuitos.
+
+Essa abordagem permite compreender a evolução do sistema antes da medição.
+
+---
+
+## Simulação
+
+A execução é realizada utilizando `AerSimulator`, permitindo:
+
+- milhares de medições (*shots*);
+- histogramas de frequências;
+- validação estatística dos resultados.
+
+---
+
+## Estado de Bell
 
 Partindo do estado
 
-\[
-|00\rangle,
-\]
+```text
+|00⟩
+```
 
-obtém-se
+e aplicando Hadamard seguida de CNOT, obtém-se
 
-\[
-|\Phi^+\rangle=
-\frac{|00\rangle+|11\rangle}{\sqrt2}.
-\]
+```text
+|Φ⁺⟩ = (|00⟩ + |11⟩)/√2
+```
 
-Esse estado apresenta correlação perfeita entre os dois qubits, independentemente da distância entre eles, caracterizando o fenômeno de **emaranhamento quântico**.
-
----
-
-# 8. Emaranhamento quântico
-
-Os notebooks apresentam uma introdução prática ao emaranhamento.
-
-São discutidos conceitos como:
-
-- estados separáveis;
-- estados não separáveis;
-- correlação quântica;
-- impossibilidade de descrição independente dos qubits.
-
-A análise dos histogramas obtidos pelo simulador evidencia que apenas os estados
-
-- 00
-- 11
-
-aparecem após a medição, conforme previsto teoricamente para o estado de Bell construído.
+Esse estado representa um dos quatro estados de Bell e constitui um exemplo clássico de emaranhamento máximo.
 
 ---
 
-# 9. Medição quântica
+## Emaranhamento
 
-Outro conceito explorado é o processo de medição.
+O emaranhamento impede que cada qubit seja descrito independentemente.
 
-Após a aplicação das portas quânticas, o sistema encontra-se em superposição.
+Nos experimentos observa-se que apenas
 
-Entretanto, ao medir os qubits, ocorre o colapso do vetor de estado para um dos estados da base computacional.
+```text
+00
+11
+```
 
-Os notebooks mostram que as frequências observadas convergem para as probabilidades previstas pelas amplitudes do vetor de estado, ilustrando empiricamente a Regra de Born.
-
----
-
-# 10. Superdense Coding
-
-A aula prática também apresenta uma introdução ao protocolo de **Superdense Coding**.
-
-Esse protocolo demonstra que:
-
-- um par previamente emaranhado;
-- aliado ao envio físico de apenas um qubit;
-
-permite transmitir **dois bits clássicos** de informação.
-
-Embora simples, esse protocolo constitui uma das primeiras aplicações da informação quântica, explorando diretamente o recurso do emaranhamento.
+aparecem nas medições, evidenciando a correlação prevista teoricamente.
 
 ---
 
-# Técnicas computacionais utilizadas
+## Medição
 
-Durante o desenvolvimento dos notebooks foram empregadas diversas funcionalidades do ecossistema Qiskit, incluindo:
+Segundo a Regra de Born,
 
-- construção manual de circuitos;
-- aplicação de portas unitárias;
-- visualização gráfica de circuitos;
-- obtenção do vetor de estado;
-- representação na Esfera de Bloch;
-- execução em simuladores;
-- histogramas de medições;
-- análise probabilística dos resultados.
+```text
+P(i) = |αᵢ|²
+```
 
-Essas ferramentas aproximam a implementação computacional dos conceitos formais estudados em Teoria da Informação Quântica e Mecânica Quântica.
+As distribuições obtidas experimentalmente convergem para essas probabilidades conforme aumenta o número de medições.
 
 ---
 
-# Metodologia
+## Superdense Coding
 
-Os notebooks seguem uma sequência didática baseada em quatro etapas:
-
-1. apresentação da fundamentação teórica;
-2. implementação computacional em Qiskit;
-3. execução de experimentos simulados;
-4. comparação entre teoria matemática e resultados obtidos.
-
-Essa abordagem favorece uma aprendizagem progressiva, permitindo compreender simultaneamente os aspectos físicos, matemáticos e computacionais envolvidos.
+Os notebooks também introduzem o protocolo de Superdense Coding, demonstrando como um par previamente emaranhado possibilita transmitir dois bits clássicos por meio do envio físico de apenas um qubit.
 
 ---
 
-# Competências desenvolvidas
+# Conteúdo dos notebooks
 
-Ao longo dos notebooks são exercitadas competências relacionadas a:
+## Aula Prática
 
-- programação científica em Python;
-- modelagem de circuitos quânticos;
-- álgebra linear aplicada à computação quântica;
-- manipulação de vetores de estado;
-- interpretação de probabilidades quânticas;
-- visualização geométrica de qubits;
-- utilização do framework Qiskit;
-- desenvolvimento de experimentos reproduzíveis em ambiente Colab.
+- criação de circuitos;
+- portas quânticas;
+- medições;
+- simulações;
+- primeiros protocolos.
+
+## Hadamard e Esfera de Bloch
+
+- visualização geométrica;
+- rotações;
+- interpretação física;
+- evolução do vetor de estado.
+
+## Par de Bell
+
+- construção do estado de Bell;
+- porta CNOT;
+- emaranhamento;
+- histogramas;
+- correlação quântica.
 
 ---
 
-# Considerações finais
+# Fluxo dos experimentos
 
-Este repositório representa uma introdução prática aos principais fundamentos da Computação Quântica utilizando o framework **Qiskit**. Os notebooks integram rigor matemático, interpretação física e implementação computacional para demonstrar conceitos como superposição, portas quânticas, representação na Esfera de Bloch, emaranhamento, estados de Bell e protocolos elementares de comunicação quântica. Ao combinar formalismo teórico com experimentação em simuladores, o material estabelece uma base sólida para estudos posteriores em algoritmos quânticos, teoria da informação quântica, correção de erros, criptografia quântica e arquiteturas de computadores quânticos.
+```mermaid
+flowchart LR
+A[Preparação do qubit] --> B[Aplicação de portas]
+B --> C[Simulação]
+C --> D[Statevector]
+C --> E[Medição]
+E --> F[Histograma]
+```
 
 ---
 
-## Referências
+# Competências Desenvolvidas
 
-- Michael A. Nielsen, Isaac L. Chuang. **Quantum Computation and Quantum Information**.
+- Álgebra Linear aplicada;
+- Programação científica em Python;
+- Modelagem de circuitos quânticos;
+- Simulação computacional;
+- Interpretação probabilística;
+- Utilização do Qiskit.
+
+---
+
+# Referências
+
+- Michael A. Nielsen; Isaac L. Chuang. *Quantum Computation and Quantum Information*.
 - IBM Quantum Documentation.
 - Qiskit Documentation.
-- IBM Quantum Learning.
-- Preskill, J. *Lecture Notes on Quantum Computation*.
+- John Preskill — *Lecture Notes on Quantum Computation*.
